@@ -156,8 +156,9 @@ Apply these inside your page views to customize the navigation bar:
 | Condition | Behavior |
 |-----------|----------|
 | No title set | Title area is empty |
-| No leading item + can go back | Automatic back button (chevron.left) |
-| No leading item + at root | Empty leading area |
+| Can go back (non-root page) | Automatic back button (chevron.left), always — overrides any custom leading item |
+| At root + leading item set | Custom leading item shown |
+| At root + no leading item | Empty leading area |
 | No trailing item | Empty trailing area |
 | No background set | System background color |
 

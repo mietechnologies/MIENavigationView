@@ -32,15 +32,15 @@ struct MIENavigationBar<Route: Identifiable & Hashable>: View {
 
     @ViewBuilder
     private var leadingContent: some View {
-        if let leadingView {
-            leadingView.view
-        } else if navigator.canGoBack {
+        if navigator.canGoBack {
             Button {
                 navigator.pop()
             } label: {
                 Image(systemName: "chevron.left")
                     .font(.body.weight(.semibold))
             }
+        } else if let leadingView {
+            leadingView.view
         } else {
             Color.clear.frame(width: 0)
         }

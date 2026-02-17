@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-02-17
+
 ### Changed
 - Back button now always takes priority in the leading slot when navigating past the root, overriding any custom leading item set via `.mieNavigationLeading`
 

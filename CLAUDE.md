@@ -35,3 +35,8 @@ The nav bar default background uses `#if canImport(UIKit)` to choose between `UI
 ## Route Constraints
 
 Routes must conform to both `Identifiable` and `Hashable`. The typical pattern is an enum with `var id: Self { self }`.
+
+## Keeping Docs in Sync
+
+- **README.md** — Update the API Reference section whenever a public API changes: method signatures on `MIENavigator`, initializers on `MIENavigationView`, or any `.mieNavigation*` view modifier.
+- **CHANGELOG.md** — Add an entry under `[Unreleased]` whenever a new feature is implemented. Use the appropriate category (`Added`, `Changed`, `Fixed`, `Removed`, `Deprecated`, `Security`) per the Keep a Changelog format.

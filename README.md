@@ -163,6 +163,12 @@ When using `Image(systemName:)` in a toolbar slot, apply `.resizable().scaledToF
 )
 ```
 
+#### Back Button Color
+
+```swift
+.mieNavigationBackButtonColor(.white)
+```
+
 ### Default Behaviors
 
 | Condition | Behavior |
@@ -173,6 +179,7 @@ When using `Image(systemName:)` in a toolbar slot, apply `.resizable().scaledToF
 | At root + no leading item | Empty leading area |
 | No trailing item | Empty trailing area |
 | No background set | System background color |
+| No back button color set | Accent color |
 
 ### Back Swipe Gesture
 

@@ -48,3 +48,13 @@ struct MIENavigationBarBackgroundKey: PreferenceKey {
         }
     }
 }
+
+struct MIENavigationBackButtonColorKey: PreferenceKey {
+    static var defaultValue: Color? = nil
+
+    static func reduce(value: inout Color?, nextValue: () -> Color?) {
+        if let next = nextValue() {
+            value = next
+        }
+    }
+}

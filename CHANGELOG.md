@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `.mieNavigationBackButtonColor(_:)` modifier to set the back button foreground color per page; defaults to accent color when unset
+
 ### Changed
 - Back button now uses a fixed 25×25 square frame with `.resizable().scaledToFit()` instead of font-based sizing
 - Leading and trailing toolbar slots enforce a 25×25 minimum square frame for consistent layout and tap targets

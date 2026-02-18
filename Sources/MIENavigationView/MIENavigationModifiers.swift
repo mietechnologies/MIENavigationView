@@ -52,6 +52,14 @@ extension View {
     }
 }
 
+// MARK: - Back Button Color Modifier
+
+extension View {
+    public func mieNavigationBackButtonColor(_ color: Color) -> some View {
+        preference(key: MIENavigationBackButtonColorKey.self, value: color)
+    }
+}
+
 // MARK: - Bar Background Modifier
 
 struct MIENavigationBarBackgroundModifier: ViewModifier {

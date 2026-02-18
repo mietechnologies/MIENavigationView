@@ -8,6 +8,7 @@ struct MIENavigationBar<Route: Identifiable & Hashable>: View {
     let leadingView: EquatableViewBox?
     let trailingView: EquatableViewBox?
     let backgroundView: EquatableViewBox?
+    let backButtonColor: Color?
 
     var body: some View {
         ZStack {
@@ -42,6 +43,7 @@ struct MIENavigationBar<Route: Identifiable & Hashable>: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: navBarButtonSize, height: navBarButtonSize)
+                    .foregroundStyle(backButtonColor ?? .accentColor)
             }
         } else if let leadingView {
             leadingView.view

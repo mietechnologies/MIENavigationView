@@ -9,6 +9,7 @@ public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: 
     @State private var leadingView: EquatableViewBox?
     @State private var trailingView: EquatableViewBox?
     @State private var backgroundView: EquatableViewBox?
+    @State private var backButtonColor: Color?
     @State private var dragOffset: CGFloat = 0
 
     /// Creates a navigation view with an internal navigator rooted at the given route.
@@ -32,7 +33,8 @@ public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: 
                 titleView: titleView,
                 leadingView: leadingView,
                 trailingView: trailingView,
-                backgroundView: backgroundView
+                backgroundView: backgroundView,
+                backButtonColor: backButtonColor
             )
 
             contentArea
@@ -59,6 +61,7 @@ public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: 
         .onPreferenceChange(MIENavigationLeadingKey.self) { leadingView = $0 }
         .onPreferenceChange(MIENavigationTrailingKey.self) { trailingView = $0 }
         .onPreferenceChange(MIENavigationBarBackgroundKey.self) { backgroundView = $0 }
+        .onPreferenceChange(MIENavigationBackButtonColorKey.self) { backButtonColor = $0 }
         .offset(x: -CGFloat(navigator.stack.count - 1) * geometry.size.width + dragOffset)
         .animation(.easeInOut(duration: 0.3), value: navigator.stack.count)
         .animation(.easeInOut(duration: 0.3), value: dragOffset == 0)

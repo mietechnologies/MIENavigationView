@@ -7,9 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
-- Navigation bar title is now always centered relative to the full bar width, regardless of leading or trailing button widths
-
 ## [1.1.0] - 2026-02-17
 
 ### Added
@@ -18,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Back button now uses a fixed 25×25 square frame with `.resizable().scaledToFit()` instead of font-based sizing
 - Leading and trailing toolbar slots enforce a 25×25 minimum square frame for consistent layout and tap targets
+
+### Fixed
+- Navigation bar title is now always centered relative to the full bar width, regardless of leading or trailing button widths
 
 ## [1.0.1] - 2026-02-17
 

@@ -136,6 +136,18 @@ Apply these inside your page views to customize the navigation bar:
 }
 ```
 
+When using `Image(systemName:)` in a toolbar slot, apply `.resizable().scaledToFit()` to make it scale correctly — SF Symbols render at their intrinsic font size by default and will not fill the slot automatically:
+
+```swift
+.mieNavigationTrailing {
+    Button { /* ... */ } label: {
+        Image(systemName: "square.and.arrow.up")
+            .resizable()
+            .scaledToFit()
+    }
+}
+```
+
 #### Navigation Bar Background
 
 ```swift

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Back button now uses a fixed 25×25 square frame with `.resizable().scaledToFit()` instead of font-based sizing
+- Leading and trailing toolbar slots enforce a 25×25 minimum square frame for consistent layout and tap targets
+
 ## [1.0.1] - 2026-02-17
 
 ### Changed

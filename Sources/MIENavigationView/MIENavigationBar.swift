@@ -1,5 +1,7 @@
 import SwiftUI
 
+private let navBarButtonSize: CGFloat = 25
+
 struct MIENavigationBar<Route: Identifiable & Hashable>: View {
     let navigator: MIENavigator<Route>
     let titleView: EquatableViewBox?
@@ -37,10 +39,13 @@ struct MIENavigationBar<Route: Identifiable & Hashable>: View {
                 navigator.pop()
             } label: {
                 Image(systemName: "chevron.left")
-                    .font(.body.weight(.semibold))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: navBarButtonSize, height: navBarButtonSize)
             }
         } else if let leadingView {
             leadingView.view
+                .frame(minWidth: navBarButtonSize, minHeight: navBarButtonSize)
         } else {
             Color.clear.frame(width: 0)
         }
@@ -50,6 +55,7 @@ struct MIENavigationBar<Route: Identifiable & Hashable>: View {
     private var trailingContent: some View {
         if let trailingView {
             trailingView.view
+                .frame(minWidth: navBarButtonSize, minHeight: navBarButtonSize)
         } else {
             Color.clear.frame(width: 0)
         }

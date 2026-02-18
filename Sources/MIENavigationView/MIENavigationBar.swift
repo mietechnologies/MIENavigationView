@@ -20,12 +20,17 @@ struct MIENavigationBar<Route: Identifiable & Hashable>: View {
                     .ignoresSafeArea(edges: .top)
             }
 
-            HStack {
-                leadingContent
-                Spacer()
-                if let titleView { titleView.view }
-                Spacer()
-                trailingContent
+            ZStack {
+                if let titleView {
+                    titleView.view
+                        .frame(maxWidth: .infinity)
+                }
+
+                HStack {
+                    leadingContent
+                    Spacer()
+                    trailingContent
+                }
             }
             .padding(.horizontal)
             .padding(.vertical, 10)

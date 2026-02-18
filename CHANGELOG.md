@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-02-17
+
 ### Added
 - `.mieNavigationBackButtonColor(_:)` modifier to set the back button foreground color per page; defaults to accent color when unset
 

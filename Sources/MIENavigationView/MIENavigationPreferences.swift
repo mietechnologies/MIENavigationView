@@ -13,9 +13,7 @@ struct MIENavigationTitleKey: PreferenceKey {
     static var defaultValue: EquatableViewBox? = nil
 
     static func reduce(value: inout EquatableViewBox?, nextValue: () -> EquatableViewBox?) {
-        if let next = nextValue() {
-            value = next
-        }
+        value = nextValue()
     }
 }
 
@@ -23,9 +21,7 @@ struct MIENavigationLeadingKey: PreferenceKey {
     static var defaultValue: EquatableViewBox? = nil
 
     static func reduce(value: inout EquatableViewBox?, nextValue: () -> EquatableViewBox?) {
-        if let next = nextValue() {
-            value = next
-        }
+        value = nextValue()
     }
 }
 
@@ -33,9 +29,7 @@ struct MIENavigationTrailingKey: PreferenceKey {
     static var defaultValue: EquatableViewBox? = nil
 
     static func reduce(value: inout EquatableViewBox?, nextValue: () -> EquatableViewBox?) {
-        if let next = nextValue() {
-            value = next
-        }
+        value = nextValue()
     }
 }
 
@@ -43,9 +37,7 @@ struct MIENavigationBarBackgroundKey: PreferenceKey {
     static var defaultValue: EquatableViewBox? = nil
 
     static func reduce(value: inout EquatableViewBox?, nextValue: () -> EquatableViewBox?) {
-        if let next = nextValue() {
-            value = next
-        }
+        value = nextValue()
     }
 }
 
@@ -53,8 +45,6 @@ struct MIENavigationBackButtonColorKey: PreferenceKey {
     static var defaultValue: Color? = nil
 
     static func reduce(value: inout Color?, nextValue: () -> Color?) {
-        if let next = nextValue() {
-            value = next
-        }
+        value = nextValue()
     }
 }

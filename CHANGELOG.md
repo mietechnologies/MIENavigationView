@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Navigation bar preferences now clear correctly when a top page omits a title/leading/trailing/background/back-button color modifier
+
 ## [1.1.0] - 2026-02-17
 
 ### Added

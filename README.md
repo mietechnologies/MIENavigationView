@@ -184,7 +184,7 @@ When using `Image(systemName:)` in a toolbar slot, apply `.resizable().scaledToF
 
 ### Back Swipe Gesture
 
-When navigated past the root, swiping right from anywhere on the content area pops back to the previous route. The threshold is 30% of the screen width.
+When navigated past the root, swiping right from the leading edge pops back to the previous route. The completion threshold is 30% of the screen width.
 
 ## Multi-Root / Menu-Driven Apps
 

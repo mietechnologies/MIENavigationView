@@ -1,6 +1,9 @@
 import SwiftUI
 
 public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: View {
+    private let backSwipeActivationEdgeWidth: CGFloat = 32
+    private let backSwipeCompletionThreshold: CGFloat = 0.3
+
     @State private var ownedNavigator: MIENavigator<Route>
     private let externalNavigator: MIENavigator<Route>?
     private let content: (Route) -> Content
@@ -11,6 +14,7 @@ public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: 
     @State private var backgroundView: EquatableViewBox?
     @State private var backButtonColor: Color?
     @State private var dragOffset: CGFloat = 0
+    @State private var isBackSwipeActive = false
 
     /// Creates a navigation view with an internal navigator rooted at the given route.
     public init(root: Route, @ViewBuilder content: @escaping (Route) -> Content) {
@@ -49,7 +53,7 @@ public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: 
     private var contentArea: some View {
         GeometryReader { geometry in
             scrollContent(in: geometry)
-                .gesture(backSwipeGesture(in: geometry))
+                .simultaneousGesture(backSwipeGesture(in: geometry))
         }
         .clipped()
     }
@@ -73,17 +77,33 @@ public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: 
     }
 
     private func backSwipeGesture(in geometry: GeometryProxy) -> some Gesture {
-        DragGesture()
+        DragGesture(minimumDistance: 10)
             .onChanged { value in
-                guard navigator.canGoBack, value.translation.width > 0 else { return }
-                dragOffset = value.translation.width
-            }
-            .onEnded { value in
                 guard navigator.canGoBack else { return }
-                if value.translation.width > geometry.size.width * 0.3 {
+
+                if !isBackSwipeActive {
+                    let isEdgeStart = value.startLocation.x <= backSwipeActivationEdgeWidth
+                    let isHorizontalSwipe = abs(value.translation.width) > abs(value.translation.height)
+                    guard isEdgeStart, isHorizontalSwipe else { return }
+                    isBackSwipeActive = true
+                }
+
+                guard isBackSwipeActive else { return }
+                dragOffset = min(max(0, value.translation.width), geometry.size.width)
+            }
+            .onEnded { _ in
+                guard navigator.canGoBack, isBackSwipeActive else {
+                    dragOffset = 0
+                    isBackSwipeActive = false
+                    return
+                }
+
+                if dragOffset > geometry.size.width * backSwipeCompletionThreshold {
                     navigator.pop()
                 }
+
                 dragOffset = 0
+                isBackSwipeActive = false
             }
     }
 }

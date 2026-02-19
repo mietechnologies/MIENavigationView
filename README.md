@@ -89,10 +89,11 @@ navigator.push(.detail(item: "id"))   // Push a new route
 navigator.pop()                        // Go back one level
 navigator.popToRoot()                  // Return to the root route
 navigator.replaceRoot(.settings)       // Swap the root route entirely
+navigator.replaceStack([.home, .settings]) // Replace the full stack when needed
 
 navigator.currentRoute                 // The topmost route
 navigator.canGoBack                    // true when stack has more than one route
-navigator.stack                        // The full route stack
+navigator.stack                        // The read-only full route stack
 ```
 
 ### MIENavigationView

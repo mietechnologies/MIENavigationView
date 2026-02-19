@@ -2,7 +2,7 @@ import SwiftUI
 
 @Observable
 public final class MIENavigator<Route: Identifiable & Hashable> {
-    public var stack: [Route]
+    public private(set) var stack: [Route]
 
     public var canGoBack: Bool {
         stack.count > 1
@@ -32,5 +32,10 @@ public final class MIENavigator<Route: Identifiable & Hashable> {
 
     public func replaceRoot(_ route: Route) {
         stack = [route]
+    }
+
+    public func replaceStack(_ routes: [Route]) {
+        guard !routes.isEmpty else { return }
+        stack = routes
     }
 }

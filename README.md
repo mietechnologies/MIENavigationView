@@ -80,7 +80,7 @@ struct HomeView: View {
 
 ### MIENavigator
 
-The `@Observable` class that manages the navigation stack.
+The `@MainActor @Observable` class that manages the navigation stack.
 
 ```swift
 let navigator = MIENavigator(root: AppRoute.home)

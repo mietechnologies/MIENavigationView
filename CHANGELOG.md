@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `MIENavigator` now protects stack invariants with `public private(set)` stack access and a non-empty `replaceStack(_:)` API
 - `MIENavigationView` now uses explicit owned/external navigator storage, removing unused ownership state
 - Back-swipe pop now activates from the leading edge with horizontal-intent detection to reduce gesture conflicts
+- `MIENavigator` is now `@MainActor` so navigation mutations stay on the main thread
 
 ### Fixed
 - Navigation bar preferences now clear correctly when a top page omits a title/leading/trailing/background/back-button color modifier

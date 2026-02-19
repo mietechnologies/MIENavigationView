@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 @Observable
 public final class MIENavigator<Route: Identifiable & Hashable> {
     public private(set) var stack: [Route]

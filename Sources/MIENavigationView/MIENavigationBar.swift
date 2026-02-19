@@ -1,6 +1,7 @@
 import SwiftUI
 
-private let navBarButtonSize: CGFloat = 25
+private let navBarIconSize: CGFloat = 25
+private let navBarTapTargetSize: CGFloat = 44
 
 struct MIENavigationBar<Route: Identifiable & Hashable>: View {
     let navigator: MIENavigator<Route>
@@ -47,12 +48,17 @@ struct MIENavigationBar<Route: Identifiable & Hashable>: View {
                 Image(systemName: "chevron.left")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: navBarButtonSize, height: navBarButtonSize)
+                    .frame(width: navBarIconSize, height: navBarIconSize)
                     .foregroundStyle(backButtonColor ?? .accentColor)
             }
+            .buttonStyle(.plain)
+            .frame(width: navBarTapTargetSize, height: navBarTapTargetSize, alignment: .leading)
+            .contentShape(Rectangle())
+            .accessibilityLabel("Back")
+            .accessibilityHint("Returns to the previous screen")
         } else if let leadingView {
             leadingView.view
-                .frame(minWidth: navBarButtonSize, minHeight: navBarButtonSize)
+                .frame(minWidth: navBarTapTargetSize, minHeight: navBarTapTargetSize)
         } else {
             Color.clear.frame(width: 0)
         }
@@ -62,7 +68,7 @@ struct MIENavigationBar<Route: Identifiable & Hashable>: View {
     private var trailingContent: some View {
         if let trailingView {
             trailingView.view
-                .frame(minWidth: navBarButtonSize, minHeight: navBarButtonSize)
+                .frame(minWidth: navBarTapTargetSize, minHeight: navBarTapTargetSize)
         } else {
             Color.clear.frame(width: 0)
         }

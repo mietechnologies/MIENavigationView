@@ -1,8 +1,8 @@
 import SwiftUI
 
 public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: View {
-    @Bindable private var navigator: MIENavigator<Route>
-    private let ownsNavigator: Bool
+    @State private var ownedNavigator: MIENavigator<Route>
+    private let externalNavigator: MIENavigator<Route>?
     private let content: (Route) -> Content
 
     @State private var titleView: EquatableViewBox?
@@ -14,16 +14,20 @@ public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: 
 
     /// Creates a navigation view with an internal navigator rooted at the given route.
     public init(root: Route, @ViewBuilder content: @escaping (Route) -> Content) {
-        self.navigator = MIENavigator(root: root)
-        self.ownsNavigator = true
+        _ownedNavigator = State(initialValue: MIENavigator(root: root))
+        self.externalNavigator = nil
         self.content = content
     }
 
     /// Creates a navigation view using an externally-provided navigator.
     public init(navigator: MIENavigator<Route>, @ViewBuilder content: @escaping (Route) -> Content) {
-        self.navigator = navigator
-        self.ownsNavigator = false
+        _ownedNavigator = State(initialValue: navigator)
+        self.externalNavigator = navigator
         self.content = content
+    }
+
+    private var navigator: MIENavigator<Route> {
+        externalNavigator ?? ownedNavigator
     }
 
     public var body: some View {

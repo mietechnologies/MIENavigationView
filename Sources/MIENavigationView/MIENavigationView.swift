@@ -59,11 +59,22 @@ public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: 
     }
 
     private func scrollContent(in geometry: GeometryProxy) -> some View {
-        HStack(spacing: 0) {
-            ForEach(Array(navigator.stack.enumerated()), id: \.offset) { entry in
+        let stack = navigator.stack
+        let activeIndex = max(stack.count - 1, 0)
+
+        return HStack(spacing: 0) {
+            ForEach(Array(stack.enumerated()), id: \.offset) { entry in
+                let index = entry.offset
                 let route = entry.element
-                content(route)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+
+                Group {
+                    if shouldRenderRoute(at: index, activeIndex: activeIndex) {
+                        content(route)
+                    } else {
+                        Color.clear
+                    }
+                }
+                .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
         .onPreferenceChange(MIENavigationTitleKey.self) { titleView = $0 }
@@ -71,9 +82,13 @@ public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: 
         .onPreferenceChange(MIENavigationTrailingKey.self) { trailingView = $0 }
         .onPreferenceChange(MIENavigationBarBackgroundKey.self) { backgroundView = $0 }
         .onPreferenceChange(MIENavigationBackButtonColorKey.self) { backButtonColor = $0 }
-        .offset(x: -CGFloat(navigator.stack.count - 1) * geometry.size.width + dragOffset)
-        .animation(.easeInOut(duration: 0.3), value: navigator.stack.count)
+        .offset(x: -CGFloat(activeIndex) * geometry.size.width + dragOffset)
+        .animation(.easeInOut(duration: 0.3), value: activeIndex)
         .animation(.easeInOut(duration: 0.3), value: dragOffset == 0)
+    }
+
+    private func shouldRenderRoute(at index: Int, activeIndex: Int) -> Bool {
+        abs(index - activeIndex) <= 1
     }
 
     private func backSwipeGesture(in geometry: GeometryProxy) -> some Gesture {

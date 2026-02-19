@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Back-swipe pop now activates from the leading edge with horizontal-intent detection to reduce gesture conflicts
 - `MIENavigator` is now `@MainActor` so navigation mutations stay on the main thread
 - Back button hit target and leading/trailing minimum slot size increased to 44×44 for accessibility
+- `MIENavigationView` now renders only the active route and adjacent route to reduce view construction on deep stacks
 
 ### Fixed
 - Navigation bar preferences now clear correctly when a top page omits a title/leading/trailing/background/back-button color modifier

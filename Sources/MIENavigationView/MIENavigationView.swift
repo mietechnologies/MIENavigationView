@@ -52,7 +52,8 @@ public struct MIENavigationView<Route: Identifiable & Hashable, Content: View>: 
 
     private func scrollContent(in geometry: GeometryProxy) -> some View {
         HStack(spacing: 0) {
-            ForEach(navigator.stack) { route in
+            ForEach(Array(navigator.stack.enumerated()), id: \.offset) { entry in
+                let route = entry.element
                 content(route)
                     .frame(width: geometry.size.width, height: geometry.size.height)
             }

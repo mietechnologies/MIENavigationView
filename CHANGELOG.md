@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- `MIENavigationView` now keys rendered pages by stack position, allowing duplicate routes/IDs in the stack without identity collisions
+
 ### Fixed
 - Navigation bar preferences now clear correctly when a top page omits a title/leading/trailing/background/back-button color modifier
 

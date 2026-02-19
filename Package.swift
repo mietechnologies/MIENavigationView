@@ -16,5 +16,9 @@ let package = Package(
     ],
     targets: [
         .target(name: "MIENavigationView"),
+        .testTarget(
+            name: "MIENavigationViewTests",
+            dependencies: ["MIENavigationView"]
+        ),
     ]
 )

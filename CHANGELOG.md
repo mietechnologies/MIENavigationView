@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `MIENavigationViewTests` test target with unit tests for navigator behavior and preference-key reset behavior
+
 ### Changed
 - `MIENavigationView` now keys rendered pages by stack position, allowing duplicate routes/IDs in the stack without identity collisions
 - `MIENavigator` now protects stack invariants with `public private(set)` stack access and a non-empty `replaceStack(_:)` API
